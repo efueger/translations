@@ -1,21 +1,18 @@
-before_script:
-# Install Xdebug
-  - pecl install xdebug
-# Enable Xdebug
-  - docker-php-ext-enable xdebug
-variables:
-  MYSQL_DATABASE: translations
-  MYSQL_ROOT_PASSWORD: secret
-  DB_HOST: mysql
-  DB_USERNAME: root
 
-phpunit:php7.1:mysql5.7:
-  image: laratools/laravel-ci:7.1
-  services:
-    - mysql:5.7
-  script:
-      - composer install --no-progress --no-suggest
-      - cp .env.testing .env
-      - php artisan migrate
-      - php artisan db:seed
-      - vendor/bin/phpunit --coverage-text --colors=never
+language: php
+
+php:
+  - "7.1"
+
+before_script:
+  - cp .env.testing .env
+  - mysql -e 'create database translations;'
+  - composer self-update
+  - composer install --no-interaction
+  - php artisan key:generate
+
+services:
+  - mysql
+
+script:
+- vendor/bin/phpunit
