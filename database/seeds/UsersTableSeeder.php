@@ -22,9 +22,9 @@ class UsersTableSeeder extends Seeder
                 'password'=>bcrypt($adminPassword),
             ]
         );
-        $this->command->getOutput()->writeln("Admin's data for login:");
-        $this->command->getOutput()->writeln("-email:<comment>$adminEmail</comment>");
-        $this->command->getOutput()->writeln("-password:<comment>$adminPassword</comment>");
+        $this->command->line("Admin's data for login:");
+        $this->command->line("-email:<comment>$adminEmail</comment>");
+        $this->command->line("-password:<comment>$adminPassword</comment>");
 
     }
 }
