@@ -14,7 +14,7 @@ before_script:
   - php artisan db:seed
 
 services:
-  - mysql:5.7
+  - mysql
 
 script:
 - vendor/bin/phpunit
