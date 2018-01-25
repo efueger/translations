@@ -17,4 +17,7 @@ services:
   - mysql
 
 script:
-- vendor/bin/phpunit
+  - vendor/bin/phpunit
+
+after_script:
+  - ./codeclimate.sh
