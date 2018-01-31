@@ -4,16 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f43ce5a316bac9e4a2d06c38172c3815",
+    "content-hash": "31187d396fbc152b39f27f969853caad",
     "packages": [
         {
             "name": "bu4ak/roles",
-            "version": "1.0.0",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bu4ak/roles.git",
+                "reference": "abd5a8ceecb4da1d3564cefb77e02c677e7b8aaf"
+            },
             "dist": {
-                "type": "path",
-                "url": "packages/bu4ak/roles",
-                "reference": "773b2f1278cd7de04f57a663e39c0888099d3daa",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bu4ak/roles/zipball/abd5a8ceecb4da1d3564cefb77e02c677e7b8aaf",
+                "reference": "abd5a8ceecb4da1d3564cefb77e02c677e7b8aaf",
+                "shasum": ""
             },
             "type": "library",
             "extra": {
@@ -28,6 +33,7 @@
                     "Bu4ak\\Roles\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -40,7 +46,8 @@
             "keywords": [
                 "laravel",
                 "roles"
-            ]
+            ],
+            "time": "2018-01-30T15:49:22+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -444,16 +451,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.32",
+            "version": "v5.5.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "254e4c3e133f5bc8d6068cdf28ea062abc10adf2"
+                "reference": "ef7880e665390f999f4def7c9f78133636f973cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/254e4c3e133f5bc8d6068cdf28ea062abc10adf2",
-                "reference": "254e4c3e133f5bc8d6068cdf28ea062abc10adf2",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ef7880e665390f999f4def7c9f78133636f973cf",
+                "reference": "ef7880e665390f999f4def7c9f78133636f973cf",
                 "shasum": ""
             },
             "require": {
@@ -574,7 +581,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-01-18T13:27:23+00:00"
+            "time": "2018-01-30T15:06:13+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -4475,16 +4482,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "2db61e59ff05fe5126d152bd0655c9ea113e550f"
+                "reference": "0df1908962e7a3071564e857d86874dad1ef204a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/2db61e59ff05fe5126d152bd0655c9ea113e550f",
-                "reference": "2db61e59ff05fe5126d152bd0655c9ea113e550f",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/0df1908962e7a3071564e857d86874dad1ef204a",
+                "reference": "0df1908962e7a3071564e857d86874dad1ef204a",
                 "shasum": ""
             },
             "require": {
@@ -4521,7 +4528,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2016-11-23T20:04:58+00:00"
+            "time": "2018-01-29T19:49:41+00:00"
         }
     ],
     "aliases": [],

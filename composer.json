@@ -7,12 +7,6 @@
   ],
   "license": "MIT",
   "type": "project",
-  "repositories": [
-    {
-      "type": "path",
-      "url": "packages/bu4ak/roles"
-    }
-  ],
   "require": {
     "php": ">=7.0.0",
     "bu4ak/roles": "@dev",

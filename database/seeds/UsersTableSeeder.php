@@ -26,6 +26,5 @@ class UsersTableSeeder extends Seeder
         $this->command->line("IsAdmin's data for login:");
         $this->command->line("-email:<comment>$adminEmail</comment>");
         $this->command->line("-password:<comment>$adminPassword</comment>");
-
     }
 }
