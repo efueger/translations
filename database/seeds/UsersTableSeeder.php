@@ -17,12 +17,13 @@ class UsersTableSeeder extends Seeder
         $adminEmail = 'admin@admin.com';
         User::create(
             [
-                'name'=>'admin',
-                'email'=>'admin@admin.com',
-                'password'=>bcrypt($adminPassword),
+                'name' => 'admin',
+                'email' => 'admin@admin.com',
+                'password' => bcrypt($adminPassword),
+                'role_id' => \Bu4ak\Roles\Enum\RoleType::ADMIN,
             ]
         );
-        $this->command->line("Admin's data for login:");
+        $this->command->line("IsAdmin's data for login:");
         $this->command->line("-email:<comment>$adminEmail</comment>");
         $this->command->line("-password:<comment>$adminPassword</comment>");
 

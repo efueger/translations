@@ -11,9 +11,16 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('admin');
+
+Route::get('/test', function () {
+    echo 'asf';
+})->middleware('user');
 
 Auth::routes();
 
