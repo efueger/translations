@@ -24,4 +24,6 @@ Route::get('/test', function () {
 
 Auth::routes();
 
+Route::resource('project', 'ProjectController');
+
 Route::get('/home', 'HomeController@index')->name('home');
