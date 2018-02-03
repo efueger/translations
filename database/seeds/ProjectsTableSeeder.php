@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 
 class ProjectsTableSeeder extends Seeder
 {
+    const PROJECT_NAME = 'Amazing project';
+
     /**
      * Run the database seeds.
      *
@@ -14,7 +16,7 @@ class ProjectsTableSeeder extends Seeder
     public function run()
     {
         Project::create([
-            'name' => 'Amazing project',
+            'name' => self::PROJECT_NAME,
             'user_id' => Client::first()->id,
         ]);
     }
