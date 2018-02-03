@@ -11,18 +11,22 @@
     <testsuites>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
-            <exclude>./app/Http/Controllers/Auth</exclude>
 
         </testsuite>
 
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
-            <exclude>./app/Http/Controllers/Auth</exclude>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>
+            <exclude>
+                <directory>
+                    ./app/Http/Controllers/Auth
+                </directory>
+            </exclude>
+
         </whitelist>
     </filter>
     <php>
