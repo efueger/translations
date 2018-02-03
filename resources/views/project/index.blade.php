@@ -8,13 +8,26 @@
                     <div class="panel-heading">Projects</div>
 
                     <div class="panel-body">
-
                         @if(!empty($projects))
-                            @foreach($projects as $project)
-                                {{ $project->name }} <br>
-                            @endforeach
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Projects name</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($projects as $project)
+                                    <tr>
+                                        <td>{{ $project->name }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         @endif
+
                     </div>
+
                 </div>
             </div>
         </div>
