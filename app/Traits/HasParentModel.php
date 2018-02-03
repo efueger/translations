@@ -26,7 +26,7 @@ trait HasParentModel
 
     public function getForeignKey()
     {
-        return Str::snake(class_basename($this->getParentClass())) . '_' . $this->primaryKey;
+        return Str::snake(class_basename($this->getParentClass())).'_'.$this->primaryKey;
     }
 
     public function joiningTable($related)

@@ -9,11 +9,11 @@
 
                     <div class="panel-body">
 
-                        Your projects!<br>
-                        Your projects!<br>
-                        Your projects!<br>
-                        Your projects!<br>
-
+                        @if(!empty($projects))
+                            @foreach($projects as $project)
+                                {{ $project->name }} <br>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
