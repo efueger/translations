@@ -13,41 +13,40 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $this->addAdmin();
-
-
+        $this->addClient();
     }
 
-//    private function addUser()
-//    {
-//        $adminPassword = strtoupper(str_random(6));
-//        $adminEmail = 'admin@admin.com';
-//        User::create(
-//            [
-//                'name' => 'admin',
-//                'email' => 'admin@admin.com',
-//                'password' => bcrypt($adminPassword),
-//                'role_id' => \Bu4ak\Roles\Enum\RoleType::ADMIN,
-//            ]
-//        );
-//        $this->command->line("IsAdmin's data for login:");
-//        $this->command->line("-email:<comment>$adminEmail</comment>");
-//        $this->command->line("-password:<comment>$adminPassword</comment>");
-//    }
+    private function addClient()
+    {
+        $password = strtoupper(str_random(6));
+        $email = 'client1@client.com';
+        User::create(
+            [
+                'name' => 'client',
+                'email' => $email,
+                'password' => bcrypt($password),
+                'role_id' => \Bu4ak\Roles\Enum\RoleType::USER,
+            ]
+        );
+        $this->command->line("Client's data for login:");
+        $this->command->line("-email:<comment>$email</comment>");
+        $this->command->line("-password:<comment>$password</comment>" . PHP_EOL);
+    }
 
     private function addAdmin()
     {
-        $adminPassword = strtoupper(str_random(6));
-        $adminEmail = 'admin@admin.com';
+        $password = strtoupper(str_random(6));
+        $email = 'admin@admin.com';
         User::create(
             [
                 'name' => 'admin',
-                'email' => 'admin@admin.com',
-                'password' => bcrypt($adminPassword),
+                'email' => $email,
+                'password' => bcrypt($password),
                 'role_id' => \Bu4ak\Roles\Enum\RoleType::ADMIN,
             ]
         );
-        $this->command->line("IsAdmin's data for login:");
-        $this->command->line("-email:<comment>$adminEmail</comment>");
-        $this->command->line("-password:<comment>$adminPassword</comment>");
+        $this->command->line("Admin's data for login:");
+        $this->command->line("-email:<comment>$email</comment>");
+        $this->command->line("-password:<comment>$password</comment>" . PHP_EOL);
     }
 }
