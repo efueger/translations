@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware('admin');
+});
 
 Route::get('/test', function () {
     echo 'asf';
