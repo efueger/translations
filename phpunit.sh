@@ -2,4 +2,4 @@
 
 php artisan migrate:refresh
 php artisan db:seed
-vendor/phpunit/phpunit/phpunit
+DB_PASSWORD=root1232  vendor/phpunit/phpunit/phpunit
