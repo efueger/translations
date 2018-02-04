@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Log;
 use function compact;
 use function redirect;
+use function response;
 use function view;
 
 class ProjectController extends Controller
@@ -105,7 +106,7 @@ class ProjectController extends Controller
             $project->delete();
         } catch (Exception $exception) {
             Log::warning($exception->getMessage(), $exception->getTrace());
-            return view('errors.custom', compact('exception'));
+            return response()->view('errors.custom', compact('exception'), 403);
         }
         return back();
     }
