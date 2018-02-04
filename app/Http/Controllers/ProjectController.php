@@ -97,5 +97,6 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        dd($project->user_id == Auth::id());
     }
 }

@@ -14,6 +14,26 @@
                                 @foreach($projects as $project)
                                     <tr>
                                         <td><h3>{{ $project->name }}</h3></td>
+                                        <td class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                               aria-expanded="false" aria-haspopup="true">
+                                                <h3>&#8226;&#8226;&#8226;</h3>
+                                            </a>
+
+                                            <ul class="dropdown-menu">
+                                                <li><a href="" class="text-warning" onclick="event.preventDefault();
+                                                            document.getElementById('delete-form-{{$project->id}}').submit();">delete</a>
+
+                                                    <form id="delete-form-{{$project->id}}"
+                                                          action="{{ route('projects.destroy',['project'=>$project->id]) }}"
+                                                          method="post"
+                                                          style="display: none;">
+                                                        {{method_field('delete')}}
+                                                        {{ csrf_field() }}
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
