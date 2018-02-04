@@ -5,22 +5,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Projects</div>
+                    <div class="panel-heading">Add new project</div>
 
                     <div class="panel-body">
-                        <form action="/action_page.php">
+                        <form action="{{route('projects.store')}}">
+                            {{csrf_field()}}
                             <div class="form-group">
-                                <label for="email">Email address:</label>
-                                <input type="email" class="form-control" id="email">
+                                <label for="name">Project name:</label>
+                                <input type="text" class="form-control" id="name">
                             </div>
-                            <div class="form-group">
-                                <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" id="pwd">
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox"> Remember me</label>
-                            </div>
-                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </form>
 
                     </div>

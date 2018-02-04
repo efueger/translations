@@ -17,6 +17,6 @@ class ProjectTest extends TestCase
     {
         $response = $this->actingAs(Client::firstOrFail())->get('/projects');
 
-        $response->assertStatus(200)->assertSeeText(ProjectsTableSeeder::PROJECT_NAME);
+        $response->assertStatus(200)->assertSeeText(ProjectsTableSeeder::AMAZING_PROJECT);
     }
 }

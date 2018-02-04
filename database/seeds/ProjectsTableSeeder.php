@@ -6,7 +6,8 @@ use Illuminate\Database\Seeder;
 
 class ProjectsTableSeeder extends Seeder
 {
-    const PROJECT_NAME = 'Amazing project';
+    const AMAZING_PROJECT = 'Amazing project';//using for tests
+    const ANOTHER_PROJECT = 'Another project';
 
     /**
      * Run the database seeds.
@@ -15,9 +16,16 @@ class ProjectsTableSeeder extends Seeder
      */
     public function run()
     {
-        Project::create([
-            'name' => self::PROJECT_NAME,
-            'user_id' => Client::first()->id,
+        $client = Client::first();
+        Project::insert([
+            [
+                'name' => self::AMAZING_PROJECT,
+                'user_id' => $client->id,
+            ],
+            [
+                'name' => self::ANOTHER_PROJECT,
+                'user_id' => $client->id,
+            ],
         ]);
     }
 }
