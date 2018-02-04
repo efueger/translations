@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Log;
+use function compact;
 use function redirect;
 use function view;
 
@@ -93,10 +96,17 @@ class ProjectController extends Controller
      *
      * @param \App\Project $project
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function destroy(Project $project)
     {
-        dd($project->user_id == Auth::id());
+        try {
+            $this->authorize('delete', $project);
+            $project->delete();
+        } catch (Exception $exception) {
+            Log::warning($exception->getMessage(), $exception->getTrace());
+            return view('errors.custom', compact('exception'));
+        }
+        return back();
     }
 }

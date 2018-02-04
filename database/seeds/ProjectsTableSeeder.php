@@ -16,16 +16,20 @@ class ProjectsTableSeeder extends Seeder
      */
     public function run()
     {
-        $client = Client::first();
-        Project::insert([
-            [
-                'name' => self::AMAZING_PROJECT,
-                'user_id' => $client->id,
-            ],
-            [
-                'name' => self::ANOTHER_PROJECT,
-                'user_id' => $client->id,
-            ],
-        ]);
+        $clients = Client::get();
+        $data = [];
+        foreach ($clients as $client) {
+            array_push(
+                $data,
+                ['name' => self::AMAZING_PROJECT,
+                    'user_id' => $client->id,
+                ],
+                [
+                    'name' => self::ANOTHER_PROJECT,
+                    'user_id' => $client->id,
+                ]
+            );
+        }
+        Project::insert($data);
     }
 }

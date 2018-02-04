@@ -14,12 +14,13 @@ class UsersTableSeeder extends Seeder
     {
         $this->addAdmin();
         $this->addClient();
+        $this->addClient();
     }
 
     private function addClient()
     {
         $password = strtoupper(str_random(6));
-        $email = 'client1@client.com';
+        $email = strtolower(str_random(5)) . '@client.com';
         User::create(
             [
                 'name' => 'client',
@@ -28,9 +29,8 @@ class UsersTableSeeder extends Seeder
                 'role_id' => \Bu4ak\Roles\Enum\RoleType::USER,
             ]
         );
-        $this->command->line("Client's data for login:");
-        $this->command->line("-email:<comment>$email</comment>");
-        $this->command->line("-password:<comment>$password</comment>" . PHP_EOL);
+
+        $this->printData("Client's data for login:", $email, $password);
     }
 
     private function addAdmin()
@@ -45,7 +45,12 @@ class UsersTableSeeder extends Seeder
                 'role_id' => \Bu4ak\Roles\Enum\RoleType::ADMIN,
             ]
         );
-        $this->command->line("Admin's data for login:");
+        $this->printData("Admin's data for login:", $email, $password);
+    }
+
+    private function printData(string $message, string $email, string $password)
+    {
+        $this->command->line($message);
         $this->command->line("-email:<comment>$email</comment>");
         $this->command->line("-password:<comment>$password</comment>" . PHP_EOL);
     }
