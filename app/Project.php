@@ -14,4 +14,9 @@ class Project extends Model
      * @var array
      */
     protected $fillable = ['user_id', 'name'];
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }
