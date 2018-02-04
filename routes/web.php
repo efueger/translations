@@ -24,6 +24,10 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-Route::resource('projects', 'ProjectController');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'user'], function () {
+    
+    Route::resource('projects', 'ProjectController');
+});

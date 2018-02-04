@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function view;
 
 class ProjectController extends Controller
 {
@@ -27,6 +28,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        
+        return view('project.create');
     }
 
     /**

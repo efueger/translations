@@ -9,25 +9,19 @@
 
                     <div class="panel-body">
                         @if(!empty($projects))
-
                             <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Projects name</th>
-                                </tr>
-                                </thead>
                                 <tbody>
                                 @foreach($projects as $project)
                                     <tr>
-                                        <td>{{ $project->name }}</td>
+                                        <td><h3>{{ $project->name }}</h3></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                         @endif
+                        <a href="{{route('projects.create')}}" class="btn btn-info">➕</a>
 
                     </div>
-
                 </div>
             </div>
         </div>
