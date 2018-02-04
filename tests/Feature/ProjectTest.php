@@ -20,7 +20,7 @@ class ProjectTest extends TestCase
     {
         $response = $this->actingAs(Client::firstOrFail())->get(route('projects.index'));
 
-        $response->assertStatus(200)->assertSeeText(ProjectsTableSeeder::AMAZING_PROJECT);
+        $response->assertStatus(200)->assertSee(ProjectsTableSeeder::AMAZING_PROJECT);
     }
 
     public function testProjectsStoreSuccess()
@@ -77,5 +77,14 @@ class ProjectTest extends TestCase
         )->assertStatus(302);
 
         $this->assertFalse(Project::whereId($projectID)->exists());
+    }
+
+    public function testProjectsCreatePage()
+    {
+        $client = Client::firstOrFail();
+
+        $response = $this->actingAs($client)->get(route('projects.create'));
+        $response->assertSee('Project name:');
+        $response->assertSee('Submit');
     }
 }

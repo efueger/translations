@@ -8,6 +8,7 @@ before_script:
   - cp .env.testing .env
   - mysql -e 'create database translations;'
   - composer self-update
+  - composer global require hirak/prestissimo
   - composer install --no-interaction
   - php artisan key:generate
   - php artisan migrate
