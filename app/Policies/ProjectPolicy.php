@@ -6,6 +6,10 @@ use App\Project;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Class ProjectPolicy
+ * @package App\Policies
+ */
 class ProjectPolicy
 {
     use HandlesAuthorization;
@@ -42,7 +46,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        return $user->id === $project->user_id;
+        return $this->checkUserID($user, $project);
     }
 
     /**
@@ -53,6 +57,16 @@ class ProjectPolicy
      * @return mixed
      */
     public function delete(User $user, Project $project)
+    {
+        return $this->checkUserID($user, $project);
+    }
+
+    /**
+     * @param User $user
+     * @param Project $project
+     * @return bool
+     */
+    private function checkUserID(User $user, Project $project): bool
     {
         return $user->id === $project->user_id;
     }
