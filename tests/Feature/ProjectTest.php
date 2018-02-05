@@ -39,7 +39,10 @@ class ProjectTest extends TestCase
     public function testProjectsStoreFail()
     {
         //without authorization
-        $this->postJson(route('projects.store'), ['name' => str_random(10),])->assertStatus(401);
+        $this->postJson(
+            route('projects.store'),
+            ['name' => str_random(10),]
+        )->assertStatus(401);
 
         //validation fail
         $name = str_random(31);//project name max length = 30
@@ -96,7 +99,38 @@ class ProjectTest extends TestCase
             route('projects.edit', ['project' => $client->projects()->first()])
         );
         $response->assertSee('Project name:');
-//        $response->assertSeeText($client->projects()->first()->name);
         $response->assertSee('Submit');
+    }
+
+    public function testProjectsUpdateFail()
+    {
+        $clients = Client::get();
+
+        $name = str_random();
+        $response = $this->actingAs($clients[1])->post(
+            route('projects.update', ['project' => $clients[0]->projects()->first(),]),
+            [
+                '_method' => 'put',
+                'name' => $name,
+            ]
+        );
+        $response->assertStatus(403);
+        $this->assertTrue(Project::whereName($name)->doesntExist());
+    }
+
+    public function testProjectsUpdateSuccess()
+    {
+        $clients = Client::get();
+
+        $name = str_random();
+        $response = $this->actingAs($clients[0])->post(
+            route('projects.update', ['project' => $clients[0]->projects()->first(),]),
+            [
+                '_method' => 'put',
+                'name' => $name,
+            ]
+        );
+        $response->assertStatus(302);
+        $this->assertTrue(Project::whereName($name)->exists());
     }
 }
