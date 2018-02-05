@@ -6,10 +6,8 @@ use App\Project;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Log;
 use function compact;
 use function redirect;
-use function response;
 use function view;
 
 class ProjectController extends Controller
@@ -21,9 +19,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Auth::user()->projects;
-
-        return view('project.index', compact('projects'));
+        return view('project.index', ['projects' => Auth::user()->projects]);
     }
 
     /**
@@ -33,7 +29,6 @@ class ProjectController extends Controller
      */
     public function create()
     {
-
         return view('project.create');
     }
 
@@ -74,10 +69,14 @@ class ProjectController extends Controller
      *
      * @param \App\Project $project
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Project $project)
     {
+
+        $this->authorize('edit', $project);
+
         return view('project.edit', compact('project'));
     }
 
@@ -87,10 +86,20 @@ class ProjectController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \App\Project $project
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Project $project)
     {
+        $this->validate($request, [
+            'name' => 'bail|required|max:30',
+        ]);
+
+
+        $this->authorize('update', $project);
+        $project->update($request->all());
+
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -98,17 +107,14 @@ class ProjectController extends Controller
      *
      * @param \App\Project $project
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws Exception
      */
     public function destroy(Project $project)
     {
-        try {
-            $this->authorize('delete', $project);
-            $project->delete();
-        } catch (Exception $exception) {
-            Log::warning($exception->getMessage(), $exception->getTrace());
-            return response()->view('errors.custom', compact('exception'), 403);
-        }
+        $this->authorize('delete', $project);
+        $project->delete();
+
         return back();
     }
 }

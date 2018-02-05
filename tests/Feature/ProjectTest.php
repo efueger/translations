@@ -87,4 +87,16 @@ class ProjectTest extends TestCase
         $response->assertSee('Project name:');
         $response->assertSee('Submit');
     }
+
+    public function testProjectsEditPage()
+    {
+        $client = Client::firstOrFail();
+
+        $response = $this->actingAs($client)->get(
+            route('projects.edit', ['project' => $client->projects()->first()])
+        );
+        $response->assertSee('Project name:');
+//        $response->assertSeeText($client->projects()->first()->name);
+        $response->assertSee('Submit');
+    }
 }

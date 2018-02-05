@@ -32,9 +32,9 @@ class ProjectPolicy
      * @param  \App\User $user
      * @return mixed
      */
-    public function create(User $user)
+    public function edit(User $user, Project $project)
     {
-        //
+        return $this->checkUserID($user, $project);
     }
 
     /**

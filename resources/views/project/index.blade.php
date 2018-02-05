@@ -21,6 +21,9 @@
                                             </a>
 
                                             <ul class="dropdown-menu">
+                                                <li><a href="{{ route('projects.edit',['project'=>$project->id]) }}"
+                                                       class="text-warning">edit</a>
+                                                </li>
                                                 <li><a href="" class="text-warning" onclick="event.preventDefault();
                                                             document.getElementById('delete-form-{{$project->id}}').submit();">delete</a>
 

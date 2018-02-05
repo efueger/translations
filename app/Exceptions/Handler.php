@@ -3,7 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 
 class Handler extends ExceptionHandler
 {
@@ -32,10 +34,15 @@ class Handler extends ExceptionHandler
      *
      * @param \Exception $exception
      *
+     * @return void
      * @throws Exception
      */
     public function report(Exception $exception)
     {
+        if ($exception instanceof AuthorizationException) {
+            Log::warning($exception->getMessage(), $exception->getTrace());
+        }
+
         parent::report($exception);
     }
 
@@ -43,12 +50,16 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Exception               $exception
+     * @param \Exception $exception
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof AuthorizationException) {
+            return response()->view('errors.custom', compact('exception'), 403);
+        }
+
         return parent::render($request, $exception);
     }
 }

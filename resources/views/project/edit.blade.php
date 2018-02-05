@@ -8,9 +8,9 @@
                     <div class="panel-heading">Add new project</div>
 
                     <div class="panel-body">
-                        <form action="{{route('projects.update')}}" method="post">
+                        <form action="{{route('projects.update',['project'=>$project->id])}}" method="post">
                             {{csrf_field()}}
-                            {{method_field('update')}}
+                            {{method_field('put')}}
                             <div class="form-group">
                                 <label for="name">Project name:</label>
                                 <input type="text" class="form-control" id="name" name="name" required
